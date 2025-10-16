@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+
+<body>
+
+    <div class="alert alert-danger d-e" role="alert"></div>
+
+    <div class="container">
+
+        <h3 id="h3">password gnerator</h3>
+
+        <form method="POST" action="/process">
+            <div class="searchBox">
+                <input class="searchInput" type="text" name="field_value" placeholder="Password length">
+                <button class="subButton">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="size-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
+                    </svg>
+                </button>
+            </div>
+        </form>
+
+        {% with password = get_flashed_messages() %}
+            {% if password %}
+                <h4 id="h4">password:</h4>
+                <textarea>{{ password[0] }}</textarea>
+            {% endif %}
+        {% endwith %}
+
+        <div class="footer">
+            <p>&copy; تمامی حقوق محفوظ است.</p>
+            <div class="developed">
+                <p>توسعه یافته توسط احسان خلیلی</p>
+                <p>developed by Ehsan khalili</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelector("form")
+        .addEventListener("submit", (e) => {
+            let regExp = /^\d+$/
+            let alert = document.querySelector(".alert")
+            let inpVal = document.querySelector(".searchInput").value.trim()
+
+            function ShowError(messasge) {
+                alert.textContent = messasge
+                alert.classList.add("d-e-a")
+                setTimeout(() => {alert.classList.remove("d-e-a")}, 3000)                
+            }
+
+            if(!regExp.test(inpVal)) {
+                e.preventDefault()
+                if (inpVal === ""){
+                    ShowError(".حداقل یک عدد وارد کنید")
+                } else {
+                    ShowError(".فقط عدد وارد کنید")
+                }
+            } 
+            if (inpVal > 300) {
+                e.preventDefault()
+                ShowError("لطفا عددی زیر 300 وارد نمایید.")
+            }
+        })
+    </script>
+</body>
+
+</html>
