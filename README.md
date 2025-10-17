@@ -6,8 +6,8 @@ this is a app generator password
 3. rendom and string library for generate password
 4. Html , Css , js for front-end
 ## how to run app
-step 1 : run app.py file
-step 2 : click for http://127.0.0.1:5000
+1.step 1 : run app.py file
+2.step 2 : click for http://127.0.0.1:5000
 <img width="868" height="261" alt="{96F5A73D-FE20-4499-85C8-5C6DC6529551}" src="https://github.com/user-attachments/assets/1bce2d0d-bb19-47d4-aba2-fb8dd49c7e05" />
 
 ### Program environment
